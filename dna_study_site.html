@@ -3,630 +3,953 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DNA Study — Biology Notes</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Biology Study Guide — DNA, Meiosis & Inheritance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d1117;
-    --bg2: #161b22;
-    --bg3: #1f2937;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.15);
-    --text: #e8eaf0;
-    --text2: #8b949e;
-    --text3: #4a5568;
-    --accent: #58d4a0;
-    --accent2: #3bb37e;
-    --accent-dim: rgba(88,212,160,0.12);
-    --red: #f87171;
-    --red-dim: rgba(248,113,113,0.12);
-    --yellow: #fbbf24;
-    --yellow-dim: rgba(251,191,36,0.12);
-    --blue: #60a5fa;
-    --blue-dim: rgba(96,165,250,0.12);
-    --purple: #a78bfa;
-    --purple-dim: rgba(167,139,250,0.12);
-    --coral: #fb8a7a;
-    --coral-dim: rgba(251,138,122,0.12);
+    --bg: #F4F1EB;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE6;
+    --green: #2D6A4F;
+    --green-light: #D8EDDF;
+    --green-mid: #52B788;
+    --navy: #1B2A41;
+    --text: #1B2A41;
+    --muted: #6B7280;
+    --border: rgba(27,42,65,0.1);
+    --border-strong: rgba(27,42,65,0.2);
+    --amber: #B45309;
+    --amber-light: #FEF3C7;
+    --coral: #9F3A38;
+    --coral-light: #FDE8E8;
+    --blue: #1D4ED8;
+    --blue-light: #DBEAFE;
+    --purple: #5B21B6;
+    --purple-light: #EDE9FE;
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+
   body {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     background: var(--bg);
     color: var(--text);
+    font-size: 15px;
+    line-height: 1.65;
     min-height: 100vh;
-    line-height: 1.6;
   }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(13,17,23,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2rem; height: 60px;
-  }
-  .nav-logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.1rem; color: var(--text);
-    display: flex; align-items: center; gap: 8px;
-  }
-  .nav-logo span { color: var(--accent); }
-  .nav-tabs { display: flex; gap: 4px; }
-  .nav-tab {
-    padding: 6px 16px; border-radius: 6px; border: none;
-    background: transparent; color: var(--text2);
-    cursor: pointer; font-family: 'Outfit', sans-serif;
-    font-size: 0.875rem; font-weight: 400; transition: all 0.2s;
-  }
-  .nav-tab:hover { color: var(--text); background: rgba(255,255,255,0.05); }
-  .nav-tab.active { color: var(--accent); background: var(--accent-dim); font-weight: 500; }
-
-  /* HERO */
-  .hero {
-    padding: 120px 2rem 60px;
-    max-width: 800px; margin: 0 auto; text-align: center;
-  }
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'DM Mono', monospace; font-size: 0.75rem;
-    color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
-    background: var(--accent-dim); border: 1px solid rgba(88,212,160,0.2);
-    padding: 5px 14px; border-radius: 99px; margin-bottom: 24px;
-  }
-  .hero h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    line-height: 1.1; color: var(--text);
-    margin-bottom: 16px;
-  }
-  .hero h1 em { color: var(--accent); font-style: italic; }
-  .hero p { font-size: 1.1rem; color: var(--text2); max-width: 500px; margin: 0 auto 40px; font-weight: 300; }
-  .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 48px; }
-  .chip {
-    font-size: 0.8rem; padding: 5px 14px; border-radius: 99px;
-    border: 1px solid var(--border2); color: var(--text2);
-    font-family: 'DM Mono', monospace;
-  }
-
-  /* SECTION */
-  .section { max-width: 860px; margin: 0 auto; padding: 0 2rem 80px; }
-  .section-header { margin-bottom: 2rem; }
-  .section-title {
-    font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--text);
-    margin-bottom: 6px;
-  }
-  .section-sub { font-size: 0.9rem; color: var(--text2); font-weight: 300; }
-
-  /* TOPIC PILLS */
-  .topic-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem; }
-  .topic-pill {
-    padding: 8px 18px; border-radius: 99px;
-    border: 1px solid var(--border); background: transparent;
-    color: var(--text2); cursor: pointer; font-family: 'Outfit', sans-serif;
-    font-size: 0.875rem; font-weight: 400; transition: all 0.2s;
-  }
-  .topic-pill:hover { border-color: var(--border2); color: var(--text); }
-  .topic-pill.active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-
-  /* FLASHCARD */
-  .flashcard-wrap { perspective: 1200px; margin-bottom: 1.5rem; }
-  .flashcard {
-    width: 100%; min-height: 200px; cursor: pointer;
-    position: relative; transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(.4,0,.2,1);
-  }
-  .flashcard.flipped { transform: rotateY(180deg); }
-  .flashcard-face {
-    position: absolute; width: 100%; min-height: 200px;
-    backface-visibility: hidden; -webkit-backface-visibility: hidden;
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 16px; padding: 2.5rem;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
+  /* ── Header ── */
+  header {
+    background: var(--navy);
+    color: white;
+    padding: 3rem 2rem 2.5rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-  .flashcard-face.back { transform: rotateY(180deg); border-color: rgba(88,212,160,0.25); }
-  .face-label {
-    font-family: 'DM Mono', monospace; font-size: 0.7rem;
-    text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--text3); margin-bottom: 16px;
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.02) 40px,
+      rgba(255,255,255,0.02) 80px
+    );
   }
-  .face-text { font-size: 1.1rem; line-height: 1.65; color: var(--text); font-weight: 300; }
-  .flashcard-face.back .face-text { color: var(--accent); }
-  .fc-nav { display: flex; align-items: center; justify-content: space-between; }
-  .fc-counter { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--text3); }
-  .fc-hint { font-size: 0.75rem; color: var(--text3); text-align: center; margin-bottom: 12px; }
-
-  /* PROGRESS BAR */
-  .progress-bar {
-    height: 2px; background: var(--border); border-radius: 1px;
-    overflow: hidden; margin-bottom: 1.5rem;
+  header .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 10px;
+    position: relative;
   }
-  .progress-fill { height: 100%; background: var(--accent); border-radius: 1px; transition: width 0.4s ease; }
-
-  /* BUTTONS */
-  .btn {
-    padding: 9px 22px; border-radius: 8px;
-    border: 1px solid var(--border2); background: transparent;
-    color: var(--text); cursor: pointer; font-family: 'Outfit', sans-serif;
-    font-size: 0.875rem; font-weight: 400; transition: all 0.2s;
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    position: relative;
   }
-  .btn:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.25); }
-  .btn:active { transform: scale(0.97); }
-  .btn-accent {
-    background: var(--accent); border-color: var(--accent); color: #0d1117;
-    font-weight: 600;
+  header p {
+    margin-top: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    font-size: 14px;
+    font-weight: 300;
+    position: relative;
   }
-  .btn-accent:hover { background: var(--accent2); border-color: var(--accent2); }
-
-  /* QUIZ */
-  .quiz-q {
-    font-size: 1.15rem; font-weight: 400; line-height: 1.6;
-    color: var(--text); margin-bottom: 1.5rem;
+  .unit-pills {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    position: relative;
   }
-  .quiz-opts { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
-  .quiz-opt {
-    width: 100%; text-align: left; padding: 14px 18px;
-    border: 1px solid var(--border); border-radius: 10px;
-    background: var(--bg2); color: var(--text); cursor: pointer;
-    font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 300;
-    line-height: 1.5; transition: all 0.2s;
-  }
-  .quiz-opt:hover:not(:disabled) { border-color: var(--border2); background: var(--bg3); }
-  .quiz-opt.correct { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
-  .quiz-opt.wrong { border-color: var(--red); background: var(--red-dim); color: var(--red); }
-  .quiz-opt:disabled { cursor: default; }
-  .quiz-feedback {
-    background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
-    padding: 14px 18px; font-size: 0.9rem; color: var(--text2);
-    line-height: 1.6; display: none; margin-bottom: 1rem;
-  }
-  .score-row { display: flex; align-items: center; justify-content: space-between; }
-  .score-num { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--accent); }
-  .score-lbl { font-size: 0.8rem; color: var(--text3); margin-top: -4px; }
-  .loading-dots { display: inline-flex; gap: 5px; align-items: center; padding: 8px 0; }
-  .loading-dots span {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--text3);
-    animation: bounce 1.1s infinite;
-  }
-  .loading-dots span:nth-child(2) { animation-delay: 0.18s; }
-  .loading-dots span:nth-child(3) { animation-delay: 0.36s; }
-  @keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:0.3}30%{transform:translateY(-6px);opacity:1} }
-
-  /* ASK */
-  .chat-log { display: flex; flex-direction: column; gap: 20px; margin-bottom: 1.5rem; min-height: 80px; }
-  .chat-bubble-user {
-    align-self: flex-end; max-width: 80%;
-    background: var(--accent-dim); border: 1px solid rgba(88,212,160,0.2);
-    border-radius: 14px 14px 4px 14px; padding: 12px 16px;
-    font-size: 0.95rem; color: var(--accent);
-  }
-  .chat-bubble-ai {
-    align-self: flex-start; max-width: 90%;
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 4px 14px 14px 14px; padding: 14px 18px;
-    font-size: 0.95rem; color: var(--text); line-height: 1.7;
-    white-space: pre-wrap;
-  }
-  .chat-input-row { display: flex; gap: 10px; }
-  .chat-input {
-    flex: 1; padding: 12px 18px; border: 1px solid var(--border);
-    border-radius: 10px; background: var(--bg2); color: var(--text);
-    font-family: 'Outfit', sans-serif; font-size: 0.95rem; outline: none;
-    transition: border-color 0.2s;
-  }
-  .chat-input:focus { border-color: var(--accent); }
-  .chat-input::placeholder { color: var(--text3); }
-  .chat-hint {
-    font-size: 0.78rem; color: var(--text3); margin-top: 10px;
-    font-family: 'DM Mono', monospace; line-height: 1.6;
+  .unit-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
   }
 
-  /* TOPIC COLORS */
-  .t-structure { --tc: var(--blue); --td: var(--blue-dim); }
-  .t-replication { --tc: var(--purple); --td: var(--purple-dim); }
-  .t-transcription { --tc: var(--yellow); --td: var(--yellow-dim); }
-  .t-translation { --tc: var(--coral); --td: var(--coral-dim); }
-  .t-mutations { --tc: var(--red); --td: var(--red-dim); }
-
-  .card-panel {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 16px; padding: 2rem;
+  /* ── Nav Tabs ── */
+  .tabs-wrap {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 0 var(--border);
   }
-  .qnum-badge {
-    display: inline-block; font-family: 'DM Mono', monospace;
-    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
-    padding: 3px 10px; border-radius: 99px;
-    background: var(--accent-dim); color: var(--accent);
+  .tabs {
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--green); border-bottom-color: var(--green); }
+
+  /* ── Layout ── */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.5rem;
     margin-bottom: 1rem;
   }
-
-  /* PAGE SECTIONS */
-  .page { display: none; }
-  .page.active { display: block; }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-  .fade-up { animation: fadeUp 0.35s ease forwards; }
-
-  /* FOOTER */
-  footer {
-    text-align: center; padding: 2rem;
-    font-family: 'DM Mono', monospace; font-size: 0.75rem;
-    color: var(--text3); border-top: 1px solid var(--border);
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 
-  /* SCROLLBAR */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+  /* ── Badges ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-coral { background: var(--coral-light); color: var(--coral); }
+  .badge-blue { background: var(--blue-light); color: var(--blue); }
+  .badge-purple { background: var(--purple-light); color: var(--purple); }
+
+  /* ── Fact rows ── */
+  .fact {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #4B5563;
+    padding: 6px 0 6px 14px;
+    border-left: 2px solid var(--border-strong);
+    margin-bottom: 6px;
+  }
+  .fact:last-child { margin-bottom: 0; }
+  .fact strong { color: var(--text); font-weight: 500; }
+
+  /* ── Steps ── */
+  .steps { list-style: none; }
+  .step {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    min-width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-text {
+    font-size: 14px;
+    color: #4B5563;
+    line-height: 1.6;
+  }
+  .step-text strong { color: var(--text); font-weight: 500; }
+
+  /* ── Tables ── */
+  .tbl-wrap { overflow-x: auto; }
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  table.data th {
+    padding: 9px 12px;
+    text-align: left;
+    font-weight: 500;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border-strong);
+    color: var(--navy);
+    white-space: nowrap;
+  }
+  table.data td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: #4B5563;
+    vertical-align: top;
+  }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data td strong { color: var(--text); font-weight: 500; }
+
+  /* ── 2-col grid ── */
+  .grid2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .mini-card {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 13px;
+  }
+  .mini-card .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .mini-card p { color: #4B5563; line-height: 1.6; }
+  .mini-card strong { color: var(--text); font-weight: 500; }
+
+  /* ── Pill tags ── */
+  .pill {
+    display: inline-block;
+    padding: 3px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 3px 3px 3px 0;
+  }
+  .pill-green { background: var(--green-light); color: var(--green); }
+  .pill-amber { background: var(--amber-light); color: var(--amber); }
+  .pill-coral { background: var(--coral-light); color: var(--coral); }
+  .pill-blue { background: var(--blue-light); color: var(--blue); }
+  .pill-purple { background: var(--purple-light); color: var(--purple); }
+
+  /* ── Section heading ── */
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 2rem 0 1rem;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green-light);
+  }
+  .section-heading:first-child { margin-top: 0.5rem; }
+
+  /* ── Info box ── */
+  .info-box {
+    background: var(--green-light);
+    border-left: 3px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #1a4731;
+    line-height: 1.6;
+  }
+  .info-box strong { color: var(--green); font-weight: 600; }
+
+  /* ── Flashcards ── */
+  .fc-area { padding: 1rem 0; }
+  .fc-progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .fc-progress-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+  .fc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: box-shadow 0.15s, transform 0.15s;
+    margin-bottom: 1.25rem;
+    position: relative;
+  }
+  .fc-card:hover {
+    box-shadow: 0 4px 20px rgba(27,42,65,0.08);
+    transform: translateY(-1px);
+  }
+  .fc-card.revealed { background: #F0FBF4; border-color: var(--green-mid); }
+  .fc-unit-tag {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--surface2);
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .fc-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .fc-a {
+    font-size: 14px;
+    color: #1a4731;
+    line-height: 1.65;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(82,183,136,0.3);
+    display: none;
+    max-width: 540px;
+  }
+  .fc-card.revealed .fc-a { display: block; }
+  .fc-tap-hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .fc-card.revealed .fc-tap-hint { display: none; }
+  .fc-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .fc-btn {
+    padding: 9px 22px;
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--surface);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.15s;
+  }
+  .fc-btn:hover { background: var(--surface2); }
+  .fc-count { font-size: 13px; color: var(--muted); min-width: 60px; text-align: center; }
+  .fc-shuffle {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--green);
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .fc-shuffle:hover { color: var(--navy); }
+
+  /* ── Ask AI box ── */
+  .ask-box {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .ask-box p { color: rgba(255,255,255,0.7); font-size: 13px; }
+  .ask-box strong { color: white; display: block; font-size: 14px; margin-bottom: 2px; }
+  .ask-link {
+    display: inline-block;
+    padding: 8px 18px;
+    background: var(--green-mid);
+    color: white;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .ask-link:hover { background: var(--green); }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
 
   @media (max-width: 600px) {
-    .hero { padding: 100px 1.25rem 40px; }
-    .section { padding: 0 1.25rem 60px; }
-    nav { padding: 0 1.25rem; }
-    .nav-tab { padding: 6px 10px; font-size: 0.8rem; }
+    header { padding: 2rem 1.25rem 1.75rem; }
+    main { padding: 1.25rem 1rem 3rem; }
+    .card { padding: 1rem 1.1rem; }
+    .fc-card { padding: 1.5rem 1.25rem; }
+    .ask-box { flex-direction: column; }
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">🧬 <span>DNA</span> Study</div>
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="switchPage('flashcards')">Flashcards</button>
-    <button class="nav-tab" onclick="switchPage('quiz')">Quiz</button>
-    <button class="nav-tab" onclick="switchPage('ask')">Ask AI</button>
+<header>
+  <div class="eyebrow">Biology — Units 3A · 3B · 3C</div>
+  <h1>Study Guide</h1>
+  <p>DNA &nbsp;·&nbsp; Meiosis &amp; Genetic Variation &nbsp;·&nbsp; Patterns of Inheritance</p>
+  <div class="unit-pills">
+    <span class="unit-pill">DNA Structure &amp; Replication</span>
+    <span class="unit-pill">Protein Synthesis</span>
+    <span class="unit-pill">Meiosis</span>
+    <span class="unit-pill">Inheritance Patterns</span>
+    <span class="unit-pill">Blood Types</span>
+    <span class="unit-pill">Sex-Linked Traits</span>
   </div>
-</nav>
+</header>
 
-<div class="hero">
-  <div class="hero-eyebrow">📚 Biology Unit 7 · DNA</div>
-  <h1>Study smarter,<br><em>not harder</em></h1>
-  <p>Your class notes, turned into flashcards, quizzes, and an AI tutor.</p>
-  <div class="hero-chips">
-    <span class="chip">DNA structure</span>
-    <span class="chip">Replication</span>
-    <span class="chip">Transcription</span>
-    <span class="chip">Translation</span>
-    <span class="chip">Mutations</span>
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="show('dna',this)">3A — DNA</button>
+    <button class="tab" onclick="show('meiosis',this)">3B — Meiosis</button>
+    <button class="tab" onclick="show('inherit',this)">3C — Inheritance</button>
+    <button class="tab" onclick="show('cards',this)">🃏 Flashcards</button>
   </div>
 </div>
 
-<!-- FLASHCARDS PAGE -->
-<div class="page active" id="page-flashcards">
-  <div class="section">
-    <div class="section-header">
-      <h2 class="section-title">Flashcards</h2>
-      <p class="section-sub">Click a card to reveal the answer. Use arrows to navigate.</p>
+<main>
+
+  <!-- ════════════════════ DNA ════════════════════ -->
+  <div id="dna" class="section active">
+
+    <p class="section-heading">DNA Structure</p>
+
+    <div class="card">
+      <div class="card-title">What is DNA? <span class="badge badge-green">Know cold</span></div>
+      <div class="fact"><strong>Full name:</strong> Deoxyribonucleic Acid — a large, fragile molecule that always stays inside the nucleus for protection</div>
+      <div class="fact"><strong>3 functions:</strong> Heredity (pass info to offspring), Replication (copy itself for cell division), Protein Synthesis (code to build proteins = traits)</div>
+      <div class="fact"><strong>Shape:</strong> Double Helix — two strands twisted into a spiral, connected by hydrogen bonds between complementary bases</div>
     </div>
-    <div class="topic-pills" id="fc-pills"></div>
-    <div id="fc-content" style="display:none">
-      <div class="progress-bar"><div class="progress-fill" id="fc-progress" style="width:0%"></div></div>
-      <p class="fc-hint">Click the card to flip it</p>
-      <div class="flashcard-wrap">
-        <div class="flashcard" id="flashcard" onclick="flipCard()">
-          <div class="flashcard-face front">
-            <p class="face-label">Question</p>
-            <p class="face-text" id="fc-q"></p>
-          </div>
-          <div class="flashcard-face back">
-            <p class="face-label">Answer</p>
-            <p class="face-text" id="fc-a"></p>
-          </div>
+
+    <div class="card">
+      <div class="card-title">Nucleotides — the monomer of DNA</div>
+      <div class="info-box">A <strong>nucleotide</strong> = phosphate group + deoxyribose sugar + nitrogenous base. Nucleotides link together to form the DNA strand.</div>
+      <div class="grid2">
+        <div class="mini-card">
+          <div class="label">4 Bases</div>
+          <p><strong>A</strong> — Adenine<br><strong>T</strong> — Thymine<br><strong>C</strong> — Cytosine<br><strong>G</strong> — Guanine</p>
         </div>
+        <div class="mini-card">
+          <div class="label">Chargaff's Rule</div>
+          <p><strong>A pairs with T</strong> (and vice versa)<br><strong>G pairs with C</strong> (and vice versa)<br>So %A always equals %T, and %G always equals %C</p>
+        </div>
+      </div>
+      <div class="fact" style="margin-top:10px"><strong>Example:</strong> If a DNA strand is 15% C → 15% G → 30% total. Remaining 70% is A+T → 35% each</div>
+    </div>
+
+    <p class="section-heading">DNA Replication</p>
+
+    <div class="card">
+      <div class="card-title">Replication is Semiconservative <span class="badge badge-amber">S phase, in the nucleus</span></div>
+      <div class="info-box"><strong>Semiconservative</strong> means each new DNA molecule keeps one original strand + one newly built strand.</div>
+      <ul class="steps">
+        <li class="step"><div class="step-num">1</div><div class="step-text"><strong>Helicase</strong> breaks hydrogen bonds between base pairs → unzips the helix → forms a Y-shaped replication fork</div></li>
+        <li class="step"><div class="step-num">2</div><div class="step-text"><strong>DNA Polymerase</strong> reads each template strand, attaches complementary nucleotides (A→T, G→C), and proofreads to catch errors</div></li>
+        <li class="step"><div class="step-num">3</div><div class="step-text">Result: 2 identical DNA molecules, each with one old strand and one new strand</div></li>
+      </ul>
+    </div>
+
+    <p class="section-heading">Protein Synthesis — The Central Dogma</p>
+
+    <div class="card">
+      <div class="card-title">Overview</div>
+      <div class="info-box"><strong>DNA → (Transcription) → mRNA → (Translation) → Protein</strong><br>DNA can't leave the nucleus, so mRNA acts as a messenger to carry the gene's instructions to the ribosome.</div>
+      <div class="tbl-wrap">
+        <table class="data">
+          <tr><th>RNA type</th><th>Full name</th><th>Job</th></tr>
+          <tr><td><strong>mRNA</strong></td><td>Messenger RNA</td><td>Disposable copy of one gene; carries codons (3-base sequences) to ribosome</td></tr>
+          <tr><td><strong>rRNA</strong></td><td>Ribosomal RNA</td><td>Forms the ribosome structure; forms peptide bonds between amino acids</td></tr>
+          <tr><td><strong>tRNA</strong></td><td>Transfer RNA</td><td>"Decoder" — has anticodon (complementary to mRNA codon); carries its specific amino acid</td></tr>
+        </table>
+      </div>
+      <div class="fact" style="margin-top:10px"><strong>RNA differences from DNA:</strong> Single-stranded · Uses ribose sugar · Uses Uracil (U) instead of Thymine · Can leave the nucleus</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Transcription <span class="badge badge-blue">In the nucleus</span></div>
+      <ul class="steps">
+        <li class="step"><div class="step-num">1</div><div class="step-text"><strong>RNA Polymerase</strong> binds to the gene and unzips that section of DNA</div></li>
+        <li class="step"><div class="step-num">2</div><div class="step-text">RNA Polymerase reads one DNA strand (template strand) and builds a complementary mRNA strand. Pairing: A→U, T→A, G→C, C→G</div></li>
+        <li class="step"><div class="step-num">3</div><div class="step-text">mRNA detaches, DNA rezips. mRNA exits the nucleus and travels to a ribosome.</div></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Translation <span class="badge badge-blue">At the ribosome (cytoplasm)</span></div>
+      <ul class="steps">
+        <li class="step"><div class="step-num">1</div><div class="step-text"><strong>Initiation:</strong> Ribosome attaches to mRNA and starts at the start codon <strong>AUG</strong>. First tRNA brings its amino acid.</div></li>
+        <li class="step"><div class="step-num">2</div><div class="step-text"><strong>Elongation:</strong> Ribosome shifts codon by codon. Each tRNA's anticodon matches the mRNA codon. Ribosome forms a peptide bond linking amino acids.</div></li>
+        <li class="step"><div class="step-num">3</div><div class="step-text"><strong>Termination:</strong> Ribosome reaches a stop codon → everything detaches → polypeptide is released and becomes a protein.</div></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Working a Protein Synthesis Problem</div>
+      <div class="fact"><strong>Step 1:</strong> Transcribe DNA to mRNA — write complementary bases, replacing T with U</div>
+      <div class="fact"><strong>Step 2:</strong> Underline/bracket every 3 bases on mRNA (those are your codons)</div>
+      <div class="fact"><strong>Step 3:</strong> Use the codon-amino acid table to look up the amino acid for each codon</div>
+      <div class="fact"><strong>Step 4:</strong> List the amino acids in order → that's your polypeptide</div>
+    </div>
+
+    <p class="section-heading">Mutations</p>
+
+    <div class="card">
+      <div class="card-title">Types of mutations</div>
+      <div class="tbl-wrap">
+        <table class="data">
+          <tr><th>Type</th><th>What happens</th><th>Effect on protein</th></tr>
+          <tr><td><strong>Substitution</strong></td><td>One nucleotide swapped for another</td><td>May change one amino acid (or be silent)</td></tr>
+          <tr><td><strong>Silent</strong></td><td>Substitution that codes for the same amino acid</td><td>No change — protein identical</td></tr>
+          <tr><td><strong>Insertion</strong></td><td>An extra nucleotide is added</td><td><strong>Frameshift</strong> — all codons after shift, changing every amino acid downstream</td></tr>
+          <tr><td><strong>Deletion</strong></td><td>A nucleotide is removed</td><td><strong>Frameshift</strong> — same effect as insertion</td></tr>
+        </table>
+      </div>
+      <div class="info-box" style="margin-top:10px"><strong>Frameshift analogy:</strong> "CAT BAT SAT HAT" → insert a letter after C → "CBA TSA THA T" — every word after the change is scrambled.</div>
+    </div>
+
+    <div class="ask-box">
+      <div>
+        <strong>Practice DNA concepts</strong>
+        <p>Get 5 short-answer questions on replication and protein synthesis from Claude</p>
+      </div>
+      <a class="ask-link" href="https://claude.ai" target="_blank">Ask Claude ↗</a>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════ MEIOSIS ════════════════════ -->
+  <div id="meiosis" class="section">
+
+    <p class="section-heading">Mitosis vs. Meiosis</p>
+
+    <div class="card">
+      <div class="card-title">Key differences at a glance</div>
+      <div class="tbl-wrap">
+        <table class="data">
+          <tr><th></th><th>Mitosis</th><th>Meiosis</th></tr>
+          <tr><td><strong>Cell type</strong></td><td>Somatic (body) cells</td><td>Germ cells (in ovaries/testes)</td></tr>
+          <tr><td><strong>Purpose</strong></td><td>Growth, repair, asexual reproduction</td><td>Produce gametes (sperm &amp; egg)</td></tr>
+          <tr><td><strong>Result</strong></td><td>2 diploid daughter cells (2n = 46)</td><td>4 haploid daughter cells (n = 23)</td></tr>
+          <tr><td><strong>Genetic diversity</strong></td><td>Clones — genetically identical</td><td>All unique — crossing over + independent assortment</td></tr>
+          <tr><td><strong>Divisions</strong></td><td>One division</td><td>Two divisions (Meiosis I and II)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Diploid vs. Haploid</div>
+      <div class="grid2">
+        <div class="mini-card">
+          <div class="label">Diploid (2n = 46)</div>
+          <p>Two full sets of chromosomes. All <strong>somatic cells</strong> and germ cells before meiosis are diploid.</p>
+        </div>
+        <div class="mini-card">
+          <div class="label">Haploid (n = 23)</div>
+          <p>One set of chromosomes. Only <strong>gametes</strong> (sperm &amp; egg). Gametes need half so fertilization restores 46.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-heading">The Phases of Meiosis</p>
+
+    <div class="card">
+      <div class="card-title">Meiosis I — Separating Homologous Chromosomes</div>
+      <ul class="steps">
+        <li class="step"><div class="step-num">P I</div><div class="step-text"><strong>Prophase I</strong> — Homologs pair up into <strong>tetrads</strong>. <strong>Crossing over</strong> occurs at points called chiasmata. This is the KEY event that creates genetic diversity!</div></li>
+        <li class="step"><div class="step-num">M I</div><div class="step-text"><strong>Metaphase I</strong> — Tetrads line up randomly at the middle (<strong>independent assortment</strong>) — orientation is 50/50 for each pair</div></li>
+        <li class="step"><div class="step-num">A I</div><div class="step-text"><strong>Anaphase I</strong> — Homologous chromosomes separate to opposite poles (sister chromatids stay together)</div></li>
+        <li class="step"><div class="step-num">T I</div><div class="step-text"><strong>Telophase I</strong> — 2 haploid cells form, each with one chromosome from each homologous pair (but still as double-stranded chromatids)</div></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Meiosis II — Separating Sister Chromatids <span class="badge badge-green">Like mitosis!</span></div>
+      <ul class="steps">
+        <li class="step"><div class="step-num">P II</div><div class="step-text"><strong>Prophase II</strong> — Chromosomes condense again in both cells</div></li>
+        <li class="step"><div class="step-num">M II</div><div class="step-text"><strong>Metaphase II</strong> — Individual chromosomes line up at the middle</div></li>
+        <li class="step"><div class="step-num">A II</div><div class="step-text"><strong>Anaphase II</strong> — Sister chromatids separate to opposite poles</div></li>
+        <li class="step"><div class="step-num">T II</div><div class="step-text"><strong>Telophase II</strong> — 4 haploid (n = 23) unique daughter cells. These become gametes.</div></li>
+      </ul>
+    </div>
+
+    <p class="section-heading">3 Sources of Genetic Variation</p>
+
+    <div class="card">
+      <div class="card-title">Why every offspring is unique</div>
+      <div class="fact"><strong>1. Crossing Over (Prophase I)</strong> — Non-sister chromatids of homologous chromosomes swap segments. Every chromatid ends up with a unique mix of maternal and paternal DNA.</div>
+      <div class="fact"><strong>2. Independent Assortment (Metaphase I)</strong> — Each pair of homologs lines up randomly. With 23 pairs, that's 2²³ ≈ 8.4 million possible chromosome combinations per gamete.</div>
+      <div class="fact"><strong>3. Random Fertilization</strong> — Any one of 8.4 million unique sperm can fertilize any one of 8.4 million unique eggs → essentially infinite genetic diversity.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Homologous chromosomes vs. sister chromatids</div>
+      <div class="grid2">
+        <div class="mini-card">
+          <div class="label">Homologous Chromosomes</div>
+          <p>Matching pairs — one from mom, one from dad. Same size, shape, centromere location, and gene locations (but may have different alleles). Separate in <strong>Meiosis I</strong>.</p>
+        </div>
+        <div class="mini-card">
+          <div class="label">Sister Chromatids</div>
+          <p>Identical copies of ONE chromosome, connected at the centromere after DNA replication. Separate in <strong>Meiosis II</strong> (and Mitosis).</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-heading">Chromosomal Mutations</p>
+
+    <div class="card">
+      <div class="card-title">Nondisjunction</div>
+      <div class="info-box"><strong>Nondisjunction</strong> = chromosomes or chromatids fail to separate during Meiosis I or II. The resulting gametes have too many or too few chromosomes.</div>
+      <div class="fact"><strong>Trisomy (2n+1):</strong> 3 copies of one chromosome. Example: <strong>Down Syndrome = Trisomy 21</strong></div>
+      <div class="fact"><strong>Monosomy (2n−1):</strong> Only 1 copy of a chromosome. Example: <strong>Turner Syndrome = single X (XO)</strong></div>
+      <div class="fact"><strong>Klinefelter Syndrome:</strong> XXY — extra X in males</div>
+      <div class="fact"><strong>Survival note:</strong> Depends on which chromosome is affected. Having one X is not fatal, but having only a Y chromosome is — too many essential genes are on X.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Chromosomal Aberrations from Crossing-Over Errors</div>
+      <div style="margin-bottom:10px">
+        <span class="pill pill-coral">Deletion — segment lost</span>
+        <span class="pill pill-amber">Duplication — segment copied twice</span>
+        <span class="pill pill-purple">Inversion — segment flipped</span>
+        <span class="pill pill-blue">Translocation — segment moved to non-homologous chromosome</span>
+      </div>
+      <div class="fact"><strong>Cri du Chat Syndrome:</strong> Deletion from chromosome 5</div>
+      <div class="fact"><strong>Emanuel Syndrome:</strong> Translocation of chromosomes 11 and 22</div>
+    </div>
+
+    <div class="ask-box">
+      <div>
+        <strong>Practice Meiosis concepts</strong>
+        <p>Ask Claude for quiz questions on phases, crossing over, and nondisjunction</p>
+      </div>
+      <a class="ask-link" href="https://claude.ai" target="_blank">Ask Claude ↗</a>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════ INHERITANCE ════════════════════ -->
+  <div id="inherit" class="section">
+
+    <p class="section-heading">Key Vocabulary</p>
+
+    <div class="card">
+      <div class="card-title">Essential terms</div>
+      <div class="grid2">
+        <div>
+          <div class="fact"><strong>Gene:</strong> A segment of DNA that codes for a specific protein → determines a trait</div>
+          <div class="fact"><strong>Allele:</strong> A variant of a gene (e.g., T or t for height)</div>
+          <div class="fact"><strong>Dominant:</strong> The allele expressed when at least one copy is present (uppercase letter)</div>
+          <div class="fact"><strong>Recessive:</strong> Only expressed when both alleles are recessive (lowercase letter)</div>
+        </div>
+        <div>
+          <div class="fact"><strong>Homozygous:</strong> Both alleles are the same (TT or tt)</div>
+          <div class="fact"><strong>Heterozygous:</strong> Two different alleles (Tt)</div>
+          <div class="fact"><strong>Genotype:</strong> The actual allele combination an organism has (Tt)</div>
+          <div class="fact"><strong>Phenotype:</strong> The expressed physical trait (e.g., Tall)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Mendel's Laws</div>
+      <div class="fact"><strong>Law of Segregation:</strong> Allele pairs separate during Anaphase I of meiosis → each gamete receives exactly ONE allele per gene</div>
+      <div class="fact"><strong>P generation:</strong> True-breeding (homozygous) parents crossed for opposite traits</div>
+      <div class="fact"><strong>F1 generation:</strong> All hybrids (heterozygous) — show dominant trait</div>
+      <div class="fact"><strong>F2 generation:</strong> ~3:1 ratio of dominant to recessive phenotypes</div>
+      <div class="fact"><strong>Test cross:</strong> Cross an unknown dominant with a homozygous recessive. Any recessive offspring → the unknown parent was heterozygous (Bb, not BB)</div>
+    </div>
+
+    <p class="section-heading">The 5 Inheritance Patterns</p>
+
+    <div class="card">
+      <div class="card-title">Summary comparison <span class="badge badge-green">Memorize this table</span></div>
+      <div class="tbl-wrap">
+        <table class="data">
+          <tr><th>Pattern</th><th>Heterozygous looks like</th><th># phenotypes</th><th>Notation</th><th>Example</th></tr>
+          <tr><td><strong>Complete (Mendelian)</strong></td><td>Dominant phenotype — one masks the other</td><td>2</td><td>Tt, TT, tt</td><td>Tall vs. short pea plants</td></tr>
+          <tr><td><strong>Incomplete</strong></td><td>Blended / intermediate — neither dominant</td><td>3</td><td>RW, RR, WW</td><td>Red × White = Pink flowers</td></tr>
+          <tr><td><strong>Codominance</strong></td><td>Both phenotypes show simultaneously (spots/stripes)</td><td>3</td><td>BW, BB, WW</td><td>Black × White = Spotted cow</td></tr>
+          <tr><td><strong>Multiple Alleles</strong></td><td>Depends on which two alleles are inherited</td><td>Many</td><td>I^A, I^B, i</td><td>ABO blood types</td></tr>
+          <tr><td><strong>Polygenic</strong></td><td>Continuous gradient in population</td><td>Many (range)</td><td>LLLLLL → llllll</td><td>Skin color, height, hair color</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Complete Dominance (Mendelian)</div>
+      <div class="fact"><strong>Rule:</strong> The dominant allele fully masks the recessive allele. Heterozygous (Tt) looks identical to homozygous dominant (TT).</div>
+      <div class="fact"><strong>Phenotypes:</strong> Only 2 — dominant OR recessive. No in-between.</div>
+      <div class="fact"><strong>Common mistake:</strong> Dominant does NOT mean "more common in the population" — it just means expressed when one copy is present</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Incomplete Dominance</div>
+      <div class="fact"><strong>Rule:</strong> Neither allele is fully dominant → heterozygous has an intermediate (blended) phenotype</div>
+      <div class="fact"><strong>Notation:</strong> Use two different uppercase letters (RR, WW, RW) since neither is dominant</div>
+      <div class="fact"><strong>Example problem:</strong> Pink (RW) × Red (RR) → 50% Red (RR), 50% Pink (RW) → no white offspring possible</div>
+      <div class="fact"><strong>To get maximum pink:</strong> Cross Red × White → 100% Pink offspring</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Codominance</div>
+      <div class="fact"><strong>Rule:</strong> Both alleles are equally dominant → heterozygous expresses BOTH phenotypes simultaneously (not blended)</div>
+      <div class="fact"><strong>Key difference from incomplete:</strong> Spots/stripes (both visible separately), not a blend</div>
+      <div class="fact"><strong>Example:</strong> Spotted cow (BW) × Spotted cow (BW) → 25% Black (BB), 50% Spotted (BW), 25% White (WW)</div>
+    </div>
+
+    <p class="section-heading">Blood Types — Multiple Alleles</p>
+
+    <div class="card">
+      <div class="card-title">ABO Blood Type System</div>
+      <div class="info-box"><strong>Dominance hierarchy:</strong> I^A = I^B > i (I^A and I^B are codominant with each other; i is recessive to both)</div>
+      <div class="tbl-wrap">
+        <table class="data">
+          <tr><th>Blood Type</th><th>Possible Genotypes</th><th>Carbohydrates on cells</th><th>Can receive from</th></tr>
+          <tr><td><strong>Type A</strong></td><td>I^A I^A or I^A i</td><td>A only</td><td>A, O</td></tr>
+          <tr><td><strong>Type B</strong></td><td>I^B I^B or I^B i</td><td>B only</td><td>B, O</td></tr>
+          <tr><td><strong>Type AB</strong></td><td>I^A I^B</td><td>Both A and B</td><td>A, B, AB, O (universal recipient)</td></tr>
+          <tr><td><strong>Type O</strong></td><td>ii</td><td>None</td><td>O only (universal donor)</td></tr>
+        </table>
+      </div>
+      <div class="fact" style="margin-top:10px"><strong>Why blood type matters:</strong> Blood has antibodies that attack foreign carbohydrates. A mismatch causes clotting that can be fatal.</div>
+    </div>
+
+    <p class="section-heading">Polygenic Traits</p>
+
+    <div class="card">
+      <div class="card-title">Many genes → continuous variation</div>
+      <div class="fact"><strong>Definition:</strong> The phenotype is controlled by multiple genes on different chromosomes, each contributing to the trait</div>
+      <div class="fact"><strong>How to identify:</strong> Phenotypes appear as a continuous gradient (bell curve) in a population, not distinct categories</div>
+      <div class="fact"><strong>Examples:</strong> Human skin color (controlled by 3+ genes), height, hair color</div>
+      <div class="fact"><strong>Why couples can have very different-looking children:</strong> Each child inherits a different random combination of dominant and recessive alleles across multiple genes</div>
+    </div>
+
+    <p class="section-heading">Sex-Linked Traits</p>
+
+    <div class="card">
+      <div class="card-title">Genes on the X chromosome</div>
+      <div class="info-box"><strong>Key idea:</strong> Males (XY) only have ONE X chromosome. A single recessive allele on their X will be expressed because there is no second X to mask it. Females (XX) can be carriers.</div>
+      <div class="fact"><strong>Carrier female:</strong> X^N X^c — has one normal and one recessive allele. Doesn't express the trait but can pass it to children.</div>
+      <div class="fact"><strong>Affected male:</strong> X^c Y — only one X, so the recessive allele is automatically expressed</div>
+      <div class="fact"><strong>Notation:</strong> Write alleles as superscripts on the X. Example: X^N = normal vision, X^c = color blind allele</div>
+      <div class="fact"><strong>Examples of sex-linked traits:</strong> Color blindness, hemophilia, ALD (adrenoleukodystrophy)</div>
+      <div class="tbl-wrap" style="margin-top:12px">
+        <table class="data">
+          <tr><th>Genotype</th><th>Sex</th><th>Phenotype</th></tr>
+          <tr><td>X^N X^N</td><td>Female</td><td>Normal vision</td></tr>
+          <tr><td>X^N X^c</td><td>Female</td><td>Normal vision (carrier)</td></tr>
+          <tr><td>X^c X^c</td><td>Female</td><td>Color blind</td></tr>
+          <tr><td>X^N Y</td><td>Male</td><td>Normal vision</td></tr>
+          <tr><td>X^c Y</td><td>Male</td><td>Color blind</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pedigrees</div>
+      <div class="fact"><strong>Squares</strong> = males · <strong>Circles</strong> = females · <strong>Filled shape</strong> = affected individual</div>
+      <div class="fact"><strong>Horizontal line</strong> between two individuals = mating · <strong>Vertical line</strong> down = offspring</div>
+      <div class="fact"><strong>Spotting a recessive trait:</strong> Two unaffected parents have an affected child → both parents must be carriers (Aa × Aa)</div>
+      <div class="fact"><strong>Spotting a dominant trait:</strong> Trait appears in every generation (no skipping)</div>
+    </div>
+
+    <div class="ask-box">
+      <div>
+        <strong>Practice Punnett squares</strong>
+        <p>Get practice problems covering all inheritance patterns from Claude</p>
+      </div>
+      <a class="ask-link" href="https://claude.ai" target="_blank">Ask Claude ↗</a>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════ FLASHCARDS ════════════════════ -->
+  <div id="cards" class="section">
+    <div class="fc-area">
+      <div class="fc-progress-bar">
+        <div class="fc-progress-fill" id="fc-prog" style="width:3%"></div>
+      </div>
+      <div class="fc-card" id="fc-card" onclick="flipCard()">
+        <div class="fc-unit-tag" id="fc-unit"></div>
+        <div class="fc-q" id="fc-q">Loading...</div>
+        <div class="fc-a" id="fc-a"></div>
+        <div class="fc-tap-hint" id="fc-hint">click to reveal answer</div>
       </div>
       <div class="fc-nav">
-        <button class="btn" onclick="fcMove(-1)">← Previous</button>
-        <span class="fc-counter" id="fc-counter"></span>
-        <button class="btn" onclick="fcMove(1)">Next →</button>
+        <button class="fc-btn" onclick="prevCard()">← prev</button>
+        <span class="fc-count" id="fc-count">1 / 30</span>
+        <button class="fc-btn" onclick="nextCard()">next →</button>
+      </div>
+      <div style="text-align:center">
+        <button class="fc-shuffle" onclick="shuffleCards()">↺ shuffle cards</button>
       </div>
     </div>
   </div>
-</div>
 
-<!-- QUIZ PAGE -->
-<div class="page" id="page-quiz">
-  <div class="section">
-    <div class="section-header">
-      <h2 class="section-title">Quiz me</h2>
-      <p class="section-sub">AI-generated questions — different every time.</p>
-    </div>
-    <div class="topic-pills" id="quiz-pills"></div>
-    <div id="quiz-content" style="display:none">
-      <div class="progress-bar"><div class="progress-fill" id="quiz-progress" style="width:5%"></div></div>
-      <div class="card-panel fade-up" id="quiz-card">
-        <span class="qnum-badge" id="quiz-qnum">Question 1</span>
-        <p class="quiz-q" id="quiz-q">Loading...</p>
-        <div class="quiz-opts" id="quiz-opts">
-          <div class="loading-dots"><span></span><span></span><span></span></div>
-        </div>
-        <div class="quiz-feedback" id="quiz-feedback"></div>
-        <div class="score-row">
-          <div>
-            <div class="score-num" id="quiz-score">0</div>
-            <div class="score-lbl">correct</div>
-          </div>
-          <button class="btn btn-accent" id="quiz-next" style="display:none" onclick="nextQ()">Next question →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</main>
 
-<!-- ASK PAGE -->
-<div class="page" id="page-ask">
-  <div class="section">
-    <div class="section-header">
-      <h2 class="section-title">Ask your AI tutor</h2>
-      <p class="section-sub">Powered by your class notes. Ask anything.</p>
-    </div>
-    <div class="card-panel" style="margin-bottom:1rem">
-      <div class="chat-log" id="chat-log">
-        <div class="chat-bubble-ai">Hi! I know your entire DNA unit — ask me anything. Try "Explain the difference between transcription and translation" or "What does helicase do?"</div>
-      </div>
-      <div id="ask-loading" style="display:none">
-        <div class="loading-dots"><span></span><span></span><span></span></div>
-      </div>
-    </div>
-    <div class="chat-input-row">
-      <input class="chat-input" id="ask-input" type="text" placeholder="Ask about DNA, replication, mutations..." onkeydown="if(event.key==='Enter')sendAsk()" />
-      <button class="btn btn-accent" onclick="sendAsk()">Send →</button>
-    </div>
-    <p class="chat-hint">Try: "What's a frameshift mutation?" · "Walk me through protein synthesis" · "Quiz me on Chargaff's rules"</p>
-  </div>
-</div>
-
-<footer>Built from your biology notes · Unit 7: DNA</footer>
+<footer>
+  Biology Study Guide &nbsp;·&nbsp; Units 3A, 3B, 3C &nbsp;·&nbsp; Built for test prep
+</footer>
 
 <script>
-const NOTES = `DNA Biology Class Notes:
+function show(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
 
-TOPIC 1: DNA STRUCTURE
-- DNA = Deoxyribonucleic Acid; large, fragile molecule that remains safe inside the nucleus
-- Functions: Heredity (carry info between generations), Replication (copied for cell division), Protein synthesis (DNA sequence interpreted to build proteins/traits)
-- Monomer = nucleotide; made of: phosphate group, 5-carbon deoxyribose sugar, nitrogenous base
-- 4 nitrogenous bases: Adenine (A), Thymine (T), Cytosine (C), Guanine (G)
-- Chargaff's Rule: A pairs with T (A=T), G pairs with C (G=C); complementary base pairing
-- Structure: Double helix (double=2 strands, helix=spiral shape)
-- Parts: sugar-phosphate backbone, complementary strands, hydrogen bonds between base pairs
-- DNA sequence = specific order of bases in a DNA strand
-
-TOPIC 2: DNA REPLICATION
-- Purpose: copy the genome so each new daughter cell has its own copy of DNA
-- Occurs during S phase, in the nucleus
-- Semiconservative: each new DNA molecule has one old strand and one new strand
-- Step 1 - Separating strands: Helicase enzyme breaks hydrogen bonds, unzips and untwists the helix; creates a "replication fork" (Y-shape)
-- Step 2 - Building complementary strands: DNA Polymerase reads the template, attaches complementary DNA nucleotides, and proofreads to prevent mistakes
-
-TOPIC 3: PROTEIN SYNTHESIS - TRANSCRIPTION
-- Central Dogma: DNA → RNA → Protein; DNA cannot leave the nucleus, so mRNA carries instructions
-- Overview: gene activated → transcription makes mRNA → mRNA leaves nucleus → ribosome translates mRNA → polypeptide (protein)
-- RNA vs DNA: RNA is single-stranded, shorter (one gene length), has ribose sugar (not deoxyribose), has Uracil instead of Thymine
-- RNA properties: can leave nucleus, hundreds of copies can be made, disposable
-- Three types of RNA: mRNA (messenger RNA), rRNA (ribosomal RNA), tRNA (transfer RNA)
-- mRNA: disposable copy of one gene; codons = 3-base sequences that correspond to an amino acid
-- rRNA: small subunit of ribosome; forms bonds between amino acids (builds polypeptide)
-- tRNA: "the decoder"; has anticodon (complementary to mRNA codon); carries an amino acid
-- Transcription process: gene on DNA is unzipped; ONE strand used as template to make RNA; RNA detaches, DNA rezips
-- RNA Polymerase: enzyme that transcribes DNA to RNA; breaks H-bonds to unzip the gene; attaches complementary RNA nucleotides; has start and stop signals
-- Base pairing in transcription: DNA A→RNA U, DNA T→RNA A, DNA G→RNA C, DNA C→RNA G
-
-TOPIC 4: PROTEIN SYNTHESIS - TRANSLATION
-- Translation: ribosome translates mRNA to determine amino acid sequence → polypeptide
-- Occurs at ribosome in the cytoplasm
-- Initiation: ribosome attaches to mRNA at Start codon (AUG); tRNA anticodon bonds to mRNA codon; brings corresponding amino acid
-- Elongation: ribosome shifts to next codon; new tRNA brings next amino acid; ribosome forms peptide bond connecting amino acids
-- Termination: ribosome reaches stop codon (3 possible stop codons); everything detaches; polypeptide released
-- 20 amino acids in human proteins
-- Steps to determine polypeptide from DNA: 1) Transcribe DNA to mRNA, 2) Identify codons (every 3 bases), 3) Use codon table to find amino acids, 4) List amino acids in order
-
-TOPIC 5: MUTATIONS
-- Mutations = changes to the DNA sequence
-- Point mutation: a single base is changed
-- Substitution: one nucleotide switched for another
-  - Silent mutation: substitution that does NOT change the amino acid sequence
-  - Missense mutation: substitution that DOES change the amino acid
-  - Nonsense mutation: substitution that creates a stop codon early
-- Frameshift mutations: cause ALL codons after the mutation to shift, changing all resulting amino acids
-  - Insertion: extra nucleotide added into sequence
-  - Deletion: nucleotide removed from sequence`;
-
-const topics = [
-  { id:'structure',    label:'DNA structure',  color:'t-structure'    },
-  { id:'replication',  label:'Replication',    color:'t-replication'  },
-  { id:'transcription',label:'Transcription',  color:'t-transcription'},
-  { id:'translation',  label:'Translation',    color:'t-translation'  },
-  { id:'mutations',    label:'Mutations',       color:'t-mutations'    },
+const allCards = [
+  {u:"3A — DNA", q:"What are the 3 parts of a nucleotide?", a:"Phosphate group + deoxyribose sugar + nitrogenous base. Nucleotides are the monomers that link together to form DNA."},
+  {u:"3A — DNA", q:"State Chargaff's Rule.", a:"A pairs with T, G pairs with C. The percentage of A always equals T, and G always equals C in any DNA molecule."},
+  {u:"3A — DNA", q:"If a DNA strand is 15% cytosine, what are the percentages of the other 3 bases?", a:"C = G = 15%. Together C+G = 30%. The remaining 70% is split equally: A = T = 35%."},
+  {u:"3A — DNA", q:"What is the shape of DNA and what holds the two strands together?", a:"Double helix — two complementary strands twisted into a spiral. Hydrogen bonds connect the base pairs between the two strands."},
+  {u:"3A — DNA", q:"What enzyme unzips DNA during replication? What structure does it create?", a:"Helicase breaks the hydrogen bonds between base pairs, unzipping the double helix and creating a Y-shaped replication fork."},
+  {u:"3A — DNA", q:"What are DNA Polymerase's 3 jobs?", a:"1) Reads the template strand, 2) Attaches complementary DNA nucleotides to build the new strand, 3) Proofreads to prevent/correct errors."},
+  {u:"3A — DNA", q:"What does 'semiconservative replication' mean?", a:"Each new DNA molecule contains one original (old/conserved) strand and one newly synthesized strand."},
+  {u:"3A — DNA", q:"What is the Central Dogma of Genetics?", a:"DNA → (Transcription) → mRNA → (Translation) → Protein. DNA provides instructions that are copied into mRNA, which is then read to build proteins."},
+  {u:"3A — DNA", q:"Name the 3 types of RNA and one function of each.", a:"mRNA (Messenger) — carries codons/gene copy to ribosome. rRNA (Ribosomal) — forms ribosome and makes peptide bonds. tRNA (Transfer) — carries amino acids; has anticodon."},
+  {u:"3A — DNA", q:"What is a codon? What is an anticodon?", a:"Codon = a 3-base sequence on mRNA that corresponds to a specific amino acid. Anticodon = the complementary 3-base sequence on tRNA that matches a codon."},
+  {u:"3A — DNA", q:"What enzyme performs transcription? What are RNA's 4 key differences from DNA?", a:"RNA Polymerase. RNA is: single-stranded, uses ribose sugar, uses Uracil instead of Thymine, and can leave the nucleus."},
+  {u:"3A — DNA", q:"List the 4 steps for solving a protein synthesis problem on paper.", a:"1) Transcribe DNA to mRNA (complementary bases, A→U). 2) Bracket every 3 bases as codons. 3) Use codon table to find amino acids. 4) List amino acids in order = polypeptide."},
+  {u:"3A — DNA", q:"What is a frameshift mutation? Why is it usually more harmful than a substitution?", a:"A frameshift (insertion or deletion of a nucleotide) shifts ALL codons downstream, changing every amino acid after the mutation. A substitution only affects one codon."},
+  {u:"3A — DNA", q:"What is a silent mutation?", a:"A point substitution that changes a base but codes for the same amino acid — so the protein is unchanged. Happens because multiple codons can code for the same amino acid."},
+  {u:"3B — Meiosis", q:"What is the result of mitosis vs. meiosis?", a:"Mitosis → 2 diploid (2n=46) genetically identical daughter cells. Meiosis → 4 haploid (n=23) genetically unique daughter cells."},
+  {u:"3B — Meiosis", q:"What are somatic cells vs. germ cells vs. gametes?", a:"Somatic = body cells (skin, muscle, bone, liver) — divide by mitosis. Germ cells = cells in ovaries/testes that undergo meiosis. Gametes = the sperm and egg cells produced by meiosis."},
+  {u:"3B — Meiosis", q:"Why must gametes be haploid (n=23)?", a:"So that when a haploid sperm (n=23) fertilizes a haploid egg (n=23), the resulting zygote has the correct diploid number (2n=46)."},
+  {u:"3B — Meiosis", q:"What is crossing over? When does it occur? Why is it important?", a:"Crossing over = non-sister chromatids of homologous chromosomes exchange segments at points called chiasmata. Occurs during Prophase I of Meiosis. It creates new, unique combinations of alleles on each chromatid."},
+  {u:"3B — Meiosis", q:"What is independent assortment? When does it occur?", a:"During Metaphase I, each tetrad lines up randomly and independently of all others. This means maternal and paternal chromosomes sort randomly into gametes, giving 2²³ ≈ 8.4 million possible combinations."},
+  {u:"3B — Meiosis", q:"What are the 3 sources of genetic variation in sexual reproduction?", a:"1) Crossing over (Prophase I), 2) Independent assortment (Metaphase I), 3) Random fertilization (any sperm + any egg)."},
+  {u:"3B — Meiosis", q:"What is the difference between homologous chromosomes and sister chromatids?", a:"Homologous chromosomes = matching pairs (one maternal, one paternal) — same size, genes, structure. Separate in Meiosis I. Sister chromatids = identical copies of ONE chromosome joined at centromere. Separate in Meiosis II."},
+  {u:"3B — Meiosis", q:"What is nondisjunction and what conditions can it cause?", a:"Nondisjunction = chromosomes fail to separate during Meiosis I or II. Causes gametes with wrong chromosome counts, leading to trisomy (extra chromosome) or monosomy (missing chromosome) in offspring."},
+  {u:"3B — Meiosis", q:"What are Down Syndrome, Turner Syndrome, and Klinefelter Syndrome?", a:"Down Syndrome = Trisomy 21 (3 copies of chromosome 21). Turner Syndrome = single X chromosome (XO). Klinefelter Syndrome = XXY (extra X in males)."},
+  {u:"3B — Meiosis", q:"Name the 4 chromosomal aberrations from crossing-over mistakes.", a:"Deletion (segment lost), Duplication (segment copied twice), Inversion (segment flipped backwards), Translocation (segment moved to a non-homologous chromosome)."},
+  {u:"3C — Inheritance", q:"State Mendel's Law of Segregation.", a:"Allele pairs separate (segregate) during Anaphase I of meiosis, so each gamete receives exactly ONE allele for each gene. Pairs re-form at fertilization."},
+  {u:"3C — Inheritance", q:"What are the 5 inheritance patterns? How does the heterozygous phenotype differ in each?", a:"Complete: heterozygous = dominant. Incomplete: heterozygous = intermediate blend. Codominant: heterozygous = both phenotypes show. Multiple alleles: varies by combo. Polygenic: continuous gradient."},
+  {u:"3C — Inheritance", q:"What is the difference between incomplete dominance and codominance?", a:"Incomplete = alleles blend to produce an intermediate phenotype (e.g., pink). Codominance = both alleles are fully expressed simultaneously (e.g., spots or stripes — both colors visible separately)."},
+  {u:"3C — Inheritance", q:"What are the 4 blood types, their genotypes, and the dominance rules?", a:"Type A (I^A I^A or I^A i), Type B (I^B I^B or I^B i), Type AB (I^A I^B — codominant), Type O (ii — recessive). Rule: I^A = I^B > i."},
+  {u:"3C — Inheritance", q:"Why are sex-linked recessive traits more common in males?", a:"Genes are on the X chromosome. Males (XY) have only one X — any recessive allele they carry is automatically expressed. Females (XX) have a second X that can mask the recessive allele (making them carriers)."},
+  {u:"3C — Inheritance", q:"What is polygenic inheritance? How do you identify it?", a:"A trait controlled by multiple genes on different chromosomes. Identified by a continuous gradient of phenotypes in a population (bell curve distribution) rather than distinct categories."},
 ];
 
-const FLASHCARDS = {
-  structure: [
-    { q:'What does DNA stand for?', a:'Deoxyribonucleic Acid' },
-    { q:'What are the 3 parts of a nucleotide?', a:'Phosphate group, 5-carbon deoxyribose sugar, and a nitrogenous base' },
-    { q:'What are the 4 nitrogenous bases in DNA?', a:'Adenine (A), Thymine (T), Cytosine (C), and Guanine (G)' },
-    { q:'State Chargaff\'s Rule of Base Pairing', a:'A pairs with T (A = T), and G pairs with C (G = C). The complementary bases are always equal in amount.' },
-    { q:'What does "double helix" mean?', a:'Double = 2 strands; Helix = spiral shape. DNA looks like a twisted ladder.' },
-    { q:'What bonds hold the two DNA strands together?', a:'Hydrogen bonds between complementary base pairs' },
-    { q:'Where does DNA stay in the cell and why?', a:'Inside the nucleus — it is too large and fragile to leave' },
-    { q:'What are the 3 functions of DNA?', a:'1) Heredity (pass info between generations)\n2) Replication (copying for cell division)\n3) Protein synthesis (instructions for building proteins)' },
-    { q:'What is the sugar-phosphate backbone?', a:'The outer "rails" of the DNA double helix, made of alternating phosphate and deoxyribose sugar molecules' },
-  ],
-  replication: [
-    { q:'What is the purpose of DNA replication?', a:'To copy the entire genome so each new daughter cell receives its own complete copy of DNA during cell division' },
-    { q:'When and where does DNA replication occur?', a:'During the S phase of the cell cycle, inside the nucleus' },
-    { q:'What enzyme unzips DNA during replication?', a:'Helicase — it breaks the hydrogen bonds between base pairs, unzipping and untwisting the double helix' },
-    { q:'What is a replication fork?', a:'The Y-shaped region that forms when helicase separates part of the helix; this is where new DNA synthesis takes place' },
-    { q:'What does DNA Polymerase do?', a:'It reads the DNA template strand, attaches complementary nucleotides to build a new strand, and proofreads to prevent mistakes' },
-    { q:'What does "semiconservative" replication mean?', a:'Each new DNA molecule keeps one original (old) strand and one newly built strand — so the original is "conserved" in each copy' },
-    { q:'What are the two main steps of DNA replication?', a:'1) Helicase separates the strands (unzipping)\n2) DNA Polymerase builds complementary new strands on each template' },
-  ],
-  transcription: [
-    { q:'What is the Central Dogma of Genetics?', a:'DNA → RNA → Protein. DNA is transcribed into mRNA, which is then translated into a protein.' },
-    { q:'Why can\'t DNA make proteins directly?', a:'DNA must stay in the nucleus, but ribosomes (protein factories) are in the cytoplasm. mRNA acts as a disposable messenger to carry the instructions out.' },
-    { q:'What are the 3 types of RNA and their roles?', a:'mRNA — carries gene instructions\nrRNA — part of the ribosome structure\ntRNA — brings amino acids to the ribosome (the decoder)' },
-    { q:'How is RNA different from DNA?', a:'RNA is: single-stranded, shorter (one gene), has ribose sugar (not deoxyribose), uses Uracil (U) instead of Thymine (T)' },
-    { q:'What is a codon?', a:'A sequence of 3 bases on mRNA that codes for a specific amino acid' },
-    { q:'What enzyme carries out transcription?', a:'RNA Polymerase — it unzips the DNA, reads one template strand, and assembles a complementary RNA strand' },
-    { q:'What is the role of tRNA?', a:'tRNA is the "decoder." It has an anticodon (complementary to an mRNA codon) and carries the matching amino acid to the ribosome.' },
-    { q:'When transcribing DNA adenine (A), what base does RNA use?', a:'Uracil (U) — RNA uses U wherever DNA uses A' },
-    { q:'What are the 3 steps of transcription?', a:'1) Gene sequence on DNA is unzipped by RNA Polymerase\n2) One DNA strand is used as a template to build RNA\n3) RNA detaches and DNA rezips' },
-  ],
-  translation: [
-    { q:'What is translation?', a:'The process where a ribosome reads mRNA codons and assembles a chain of amino acids (polypeptide/protein)' },
-    { q:'Where does translation occur?', a:'At the ribosome, located in the cytoplasm' },
-    { q:'What is the start codon?', a:'AUG — translation always begins here' },
-    { q:'What is an anticodon?', a:'A 3-base sequence on tRNA that is complementary to an mRNA codon. It allows tRNA to bring the correct amino acid.' },
-    { q:'Describe initiation of translation', a:'The ribosome attaches to mRNA at the start codon (AUG). A tRNA matches its anticodon to the codon and delivers the first amino acid.' },
-    { q:'Describe elongation of translation', a:'The ribosome shifts to the next codon. A new tRNA brings the next amino acid, and the ribosome forms a peptide bond to connect them. Repeats until stop codon.' },
-    { q:'Describe termination of translation', a:'The ribosome reaches a stop codon. Everything detaches and the completed polypeptide is released.' },
-    { q:'How many amino acids are used in human proteins?', a:'20 amino acids' },
-    { q:'What are the 4 steps to find a polypeptide from a DNA sequence?', a:'1) Transcribe DNA → mRNA\n2) Identify codons (every 3 bases)\n3) Use codon table → amino acids\n4) List amino acids in order' },
-  ],
-  mutations: [
-    { q:'What is a mutation?', a:'Any change to the DNA sequence' },
-    { q:'What is a point mutation?', a:'A mutation where a single base is changed' },
-    { q:'What is a substitution mutation?', a:'One nucleotide is swapped for another in the DNA sequence' },
-    { q:'What is a silent mutation?', a:'A substitution that changes a base but does NOT change the amino acid — the same amino acid is still coded for by the new codon' },
-    { q:'What is a frameshift mutation?', a:'A mutation that shifts the reading frame, causing ALL codons after the mutation to be different — changing all resulting amino acids' },
-    { q:'What is an insertion mutation?', a:'An extra nucleotide is added into the DNA sequence, causing a frameshift' },
-    { q:'What is a deletion mutation?', a:'A nucleotide is removed from the DNA sequence, causing a frameshift' },
-    { q:'Why are frameshift mutations often more harmful than substitutions?', a:'Because every codon after the mutation changes — affecting all amino acids from that point on. A substitution only affects one codon.' },
-    { q:'What is a nonsense mutation?', a:'A substitution that creates a premature stop codon, cutting the protein short' },
-  ],
-};
+let deck = [...allCards];
+let cur = 0;
 
-// PAGE SWITCHING
-function switchPage(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('page-'+page).classList.add('active');
-  const idx = ['flashcards','quiz','ask'].indexOf(page);
-  document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+function renderCard() {
+  const card = deck[cur];
+  const el = document.getElementById('fc-card');
+  el.classList.remove('revealed');
+  document.getElementById('fc-q').textContent = card.q;
+  document.getElementById('fc-a').textContent = card.a;
+  document.getElementById('fc-unit').textContent = card.u;
+  document.getElementById('fc-hint').style.display = 'block';
+  document.getElementById('fc-count').textContent = (cur + 1) + ' / ' + deck.length;
+  document.getElementById('fc-prog').style.width = Math.round(((cur + 1) / deck.length) * 100) + '%';
 }
 
-// TOPIC PILLS
-function renderPills(containerId, onClickFn, selectedId) {
-  document.getElementById(containerId).innerHTML = topics.map(t => `
-    <button class="topic-pill ${t.id===selectedId?'active':''}" onclick="${onClickFn}('${t.id}')">${t.label}</button>
-  `).join('');
-}
-
-// FLASHCARDS
-let fcTopic = null, fcIdx = 0, fcFlipped = false;
-renderPills('fc-pills', 'selectFCTopic', null);
-
-function selectFCTopic(id) {
-  fcTopic = id; fcIdx = 0; fcFlipped = false;
-  renderPills('fc-pills', 'selectFCTopic', id);
-  document.getElementById('fc-content').style.display = 'block';
-  renderFC();
-}
-function renderFC() {
-  const cards = FLASHCARDS[fcTopic];
-  document.getElementById('fc-q').textContent = cards[fcIdx].q;
-  document.getElementById('fc-a').textContent = cards[fcIdx].a;
-  document.getElementById('flashcard').classList.remove('flipped');
-  fcFlipped = false;
-  document.getElementById('fc-counter').textContent = (fcIdx+1) + ' / ' + cards.length;
-  document.getElementById('fc-progress').style.width = ((fcIdx+1)/cards.length*100)+'%';
-}
 function flipCard() {
-  fcFlipped = !fcFlipped;
-  document.getElementById('flashcard').classList.toggle('flipped', fcFlipped);
-}
-function fcMove(dir) {
-  const cards = FLASHCARDS[fcTopic];
-  fcIdx = (fcIdx + dir + cards.length) % cards.length;
-  renderFC();
+  const el = document.getElementById('fc-card');
+  el.classList.toggle('revealed');
 }
 
-// QUIZ
-let quizTopic = null, quizCount = 0, quizScore = 0, quizAnswered = false;
-renderPills('quiz-pills', 'selectQuizTopic', null);
+function nextCard() { cur = (cur + 1) % deck.length; renderCard(); }
+function prevCard() { cur = (cur - 1 + deck.length) % deck.length; renderCard(); }
 
-function selectQuizTopic(id) {
-  quizTopic = id; quizCount = 0; quizScore = 0; quizAnswered = false;
-  renderPills('quiz-pills', 'selectQuizTopic', id);
-  document.getElementById('quiz-content').style.display = 'block';
-  document.getElementById('quiz-score').textContent = '0';
-  loadQuizQ();
-}
-
-async function loadQuizQ() {
-  quizAnswered = false;
-  document.getElementById('quiz-next').style.display = 'none';
-  document.getElementById('quiz-feedback').style.display = 'none';
-  document.getElementById('quiz-q').textContent = '';
-  document.getElementById('quiz-opts').innerHTML = '<div class="loading-dots"><span></span><span></span><span></span></div>';
-  quizCount++;
-  document.getElementById('quiz-qnum').textContent = 'Question ' + quizCount;
-  document.getElementById('quiz-progress').style.width = Math.min(quizCount*8, 95)+'%';
-  const topicLabel = topics.find(t=>t.id===quizTopic).label;
-  const prompt = `You are a high school biology teacher writing quiz questions about "${topicLabel}". Use these class notes:\n\n${NOTES}\n\nGenerate ONE multiple choice question about ${topicLabel}. Vary difficulty and angle each time.\n\nRespond ONLY with valid JSON, no markdown:\n{"question":"...","options":["A) ...","B) ...","C) ...","D) ..."],"correct":0,"explanation":"..."}\n\n"correct" is the 0-based index of the right answer. All wrong options must be plausible but clearly incorrect.`;
-  try {
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ model:'claude-sonnet-4-20250514', max_tokens:500, messages:[{role:'user',content:prompt}] })
-    });
-    const d = await r.json();
-    const raw = d.content[0].text.replace(/```json|```/g,'').trim();
-    const q = JSON.parse(raw);
-    document.getElementById('quiz-q').textContent = q.question;
-    document.getElementById('quiz-opts').innerHTML = q.options.map((o,i)=>`
-      <button class="quiz-opt" onclick="answerQ(${i},${q.correct},'${q.explanation.replace(/'/g,"&#39;")}')">${o}</button>
-    `).join('');
-  } catch(e) {
-    document.getElementById('quiz-opts').innerHTML = '<p style="color:#8b949e;font-size:0.9rem">Couldn\'t load question. Check your connection and try again.</p>';
+function shuffleCards() {
+  for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
   }
+  cur = 0;
+  renderCard();
 }
 
-function answerQ(idx, correct, explanation) {
-  if(quizAnswered) return;
-  quizAnswered = true;
-  document.querySelectorAll('.quiz-opt').forEach((b,i) => {
-    b.disabled = true;
-    if(i===correct) b.classList.add('correct');
-    else if(i===idx) b.classList.add('wrong');
-  });
-  if(idx===correct) { quizScore++; document.getElementById('quiz-score').textContent = quizScore; }
-  const fb = document.getElementById('quiz-feedback');
-  fb.textContent = explanation;
-  fb.style.display = 'block';
-  document.getElementById('quiz-next').style.display = 'block';
-}
-
-function nextQ() { loadQuizQ(); }
-
-// ASK AI
-let chatHistory = [];
-async function sendAsk() {
-  const inp = document.getElementById('ask-input');
-  const q = inp.value.trim();
-  if(!q) return;
-  inp.value = '';
-  const log = document.getElementById('chat-log');
-  log.innerHTML += `<div class="chat-bubble-user">${q}</div>`;
-  document.getElementById('ask-loading').style.display = 'block';
-  chatHistory.push({role:'user', content:q});
-  const system = `You are a helpful biology tutor for a high school student studying for a DNA test. Answer only using the following class notes. Be clear, concise, and encouraging. Use plain text only.\n\nClass Notes:\n${NOTES}`;
-  try {
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ model:'claude-sonnet-4-20250514', max_tokens:600, system, messages:chatHistory.slice(-8) })
-    });
-    const d = await r.json();
-    const ans = d.content[0].text;
-    chatHistory.push({role:'assistant', content:ans});
-    document.getElementById('ask-loading').style.display = 'none';
-    log.innerHTML += `<div class="chat-bubble-ai">${ans}</div>`;
-    log.scrollTop = log.scrollHeight;
-  } catch(e) {
-    document.getElementById('ask-loading').style.display = 'none';
-    log.innerHTML += `<div class="chat-bubble-ai" style="color:#8b949e">Something went wrong. Please check your connection.</div>`;
-  }
-}
+renderCard();
 </script>
 </body>
 </html>
